@@ -14,18 +14,6 @@ CREATE TABLE Persons
   PRIMARY KEY (PersonID)
 );
 
-CREATE TABLE FooseballTeams
-(
-  TeamID int NOT NULL AUTO_INCREMENT,
-  TeamName varchar(50),
-  PersonID1 int,
-  PersonID2 int,
-  elo int,
-  wins int,
-  MatchesPlayed int,
-  PRIMARY KEY (TeamID)
-);
-
 CREATE TABLE FooseballSingles
 (
   SinglesID int NOT NULL AUTO_INCREMENT,
@@ -35,18 +23,6 @@ CREATE TABLE FooseballSingles
   PRIMARY KEY (SinglesID)
 );
 
-CREATE TABLE PingPongTeams
-(
-  TeamID int NOT NULL AUTO_INCREMENT,
-  TeamName varchar(50),
-  PersonID1 int,
-  PersonID2 int,
-  elo int,
-  wins int,
-  MatchesPlayed int,
-  PRIMARY KEY (TeamID)
-);
-
 CREATE TABLE PingPongSingles
 (
   SinglesID int NOT NULL AUTO_INCREMENT,
@@ -54,6 +30,15 @@ CREATE TABLE PingPongSingles
   wins int,
   elo int,
   PRIMARY KEY (SinglesID)
+);
+
+CREATE TABLE Teams
+(
+  TeamID int NOT NULL AUTO_INCREMENT,
+  TeamName varchar(50),
+  PersonID1 int,
+  PersonID2 int,
+  PRIMARY KEY (TeamID)
 );
 
 CREATE TABLE GamesPlayed

@@ -57,6 +57,10 @@ $accountISSET = true; /* TODO Check if session is set (logged in) */
             document.cookie = name + "=" + value + expires + "; path=/acc/html";                    
         }
     }
+
+    $(function(){
+        rebindSelect();
+    })
     </script>
 
 
