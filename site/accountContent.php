@@ -105,10 +105,124 @@
 
   <?php
     } else { // Show account page
+
+      include 'php/signIn.php'; // get simple user info
+
+      include 'php/userAccountInfo.php'; // get rankings and groups
+
   ?>
 
+    <script>
+
+      var basicUserInfo = JSON.parse(<?php echo $accountInfo ?>);
+
+      $(function(){
+        // set up basic information
+        $('#profile_accountName').html(basicUserInfo.firstName + ', ' + basicUserInfo.lastName);
+        $('#profile_aboutMe').html(basicUserInfo.aboutMe);
+
+      });
+
+    </script>
 
 
+    <div id="accountProfile" class="menuItemContent">
+      <div class="row">
+        <center><h3 id="profile_accountName">My Account</h3></center>
+        <h4 id="profile_aboutMe">About Me</h4>
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">perm_identity</i>My Info</div>
+            <div class="collapsible-body">
+              <div id="account_groups">
+
+                <table>
+                  <thead>
+                    <tr>
+                        <th data-field="id">Name</th>
+                        <th data-field="name">Item Name</th>
+                        <th data-field="price">Item Price</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Alvin</td>
+                      <td>Eclair</td>
+                      <td>$0.87</td>
+                    </tr>
+                    <tr>
+                      <td>Alan</td>
+                      <td>Jellybean</td>
+                      <td>$3.76</td>
+                    </tr>
+                    <tr>
+                      <td>Jonathan</td>
+                      <td>Lollipop</td>
+                      <td>$7.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+            
+              </div>
+            </div>
+          </li>
+          <!--li>
+            <div class="collapsible-header"><i class="material-icons">games</i>Record Game</div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div id="matchupYourTeam" class="input-field col s6">
+                  <select>
+                    <option value="" disabled selected>Choose Your Team</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+                  <label>The matchup</label>
+                </div>
+                <div id="matchupOpponent" class="input-field col s6">
+                  <select>
+                    <option value="" disabled selected>Choose Opponent</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+                  <label>The matchup</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="matchupYourScore" class="input-field col s6">
+                  <select>
+                    <script>
+                      var opts = "<select><option value='' disabled selected>Your Score</option>";
+                      for(var i = 0; i <= 10; i++){
+                        opts += "<option value='"+i+"'>"+i+"</option>";
+                      }
+                      $('#matchupYourScore').html(opts+"</select>");
+                      rebindSelect();
+                    </script>
+                  </select>
+                </div>
+                <div id="matchupOpponentScore" class="input-field col s6">
+                  <select>
+                    <script>
+                      var opts = "<select><option value='' disabled selected>Opponents Score</option>";
+                      for(var i = 0; i <= 10; i++){
+                        opts += "<option value='"+i+"'>"+i+"</option>";
+                      }
+                      $('#matchupOpponentScore').html(opts+"</select>");
+                      rebindSelect();
+                    </script>
+                  </select>
+                </div>
+              </div>
+              <marquee><h4 id='recordMatchError' style='color: red;'></h4></marquee>
+              <center><a onclick="recordMatch()" class="waves-effect waves-light btn">Submit</a></center>
+            </div>
+          </li-->
+        </ul>
+      </div>
+    </div>
 
 
   <?php
