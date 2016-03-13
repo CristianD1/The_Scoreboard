@@ -1,4 +1,4 @@
-DROP DATABASE scoreboardInfo;
+DROP DATABASE IF EXISTS scoreboardInfo;
 
 CREATE DATABASE scoreboardInfo;
 
