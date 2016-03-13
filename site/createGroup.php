@@ -10,15 +10,31 @@
   <div id="createGroup" class="menuItemContent">
     <div class="row">
 
+    <!-- option to select a teammate or create a joinable team -->
+
       <form id="createGroupForm" class="col s12" action="createGroup">
         <center><h3>Create Group</h3></center>
-        <div class="row">
+        
+        <div class="row"> <!-- enter team name -->
           <div class="input-field col s12">
             <i class="material-icons prefix">library_books</i>
             <input id="create_teamName" type="text" class="validate">
             <label for="create_teamName">Team Name</label>
           </div>
         </div>
+
+        <div class="row"> <!-- choose teammate -->
+          <div class="input-field col s12">
+            <select>
+              <option value="0" disabled selected>Choose your team member</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Team Members</label>
+          </div>
+        </div>
+
         <center><a onclick="validateForm('createGroup')" class="waves-effect waves-light btn">Submit</a></center>
       </form>
 
