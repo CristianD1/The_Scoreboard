@@ -1,0 +1,8 @@
+@font-face {
+    font-family: LDFComicSans;
+    src: url(LDFComicSans.ttf);
+}
+
+html {
+  font-family: LDFComicSans;
+}
