@@ -1,8 +1,9 @@
 
 <?php 
     include 'template/header.php';
+    include 'php/signIn.php'; // get simple user info
+    $accountISSET = $loggedIn;
 ?>  
-
 <!-- Show personal info (including joined groups) option to record a game -->
 
 <div id="pageContent">
@@ -58,11 +59,11 @@
           <div class="collapsible-body">
             <div class="row">
 
-              <form id="loginForm" class="col s12"> <!-- sign in -->
+              <form id="loginForm" class="col s12" action='accountContent.php' method="post"> <!-- sign in -->
                 <div class="row">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">lock</i>
-                    <input id="login_securityCode" type="text" class="validate">
+                    <input id="login_securityCode" type="text" class="validate" name="securityCode">
                     <label for="login_securityCode">Password</label>
                   </div>
                 </div>
@@ -106,10 +107,7 @@
   <?php
     } else { // Show account page
 
-      include 'php/signIn.php'; // get simple user info
-
       include 'php/userAccountInfo.php'; // get rankings and groups
-
   ?>
 
     <script>
@@ -120,7 +118,7 @@
         // set up basic information
         $('#profile_accountName').html(basicUserInfo.firstName + ', ' + basicUserInfo.lastName);
         $('#profile_aboutMe').html(basicUserInfo.aboutMe);
-
+               
       });
 
     </script>
