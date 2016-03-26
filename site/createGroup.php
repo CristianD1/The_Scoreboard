@@ -1,6 +1,8 @@
 
 <?php 
     include 'template/header.php';
+
+    include 'php/getPlayers.php'
 ?>  
 
 <!-- Group [create] functionality -->
@@ -24,9 +26,9 @@
         </div>
 
         <div class="row"> <!-- choose teammate -->
-          <div class="input-field col s12">
+          <div class="input-field col s12" id="teamMemberList">
             <select>
-              <option value="0" disabled selected>Choose your team member</option>
+              <option value="0" disabled selected>Choose the du</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
               <option value="3">Option 3</option>
