@@ -10,7 +10,7 @@
 
 
   <?php 
-    if ( $accountISSET == false ){ // Show login page
+    if ( $accountISSET == false ) { // Show login page
   ?>
 
 
