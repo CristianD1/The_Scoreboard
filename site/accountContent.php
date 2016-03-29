@@ -10,7 +10,7 @@
 
 
   <?php 
-    if ( $accountISSET == false ){ // Show login page
+    if ( $accountISSET == false ) { // Show login page
   ?>
 
 
@@ -105,7 +105,7 @@
     </script>
 
   <?php
-    } else { // Show account page
+    } else if ( $accountISSET == true ) { // Show account page
 
       include 'php/userAccountInfo.php'; // get rankings and groups
   ?>
@@ -118,10 +118,27 @@
         // set up basic information
         $('#profile_accountName').html(basicUserInfo.firstName + ', ' + basicUserInfo.lastName);
         $('#profile_aboutMe').html(basicUserInfo.aboutMe);
-               
+
+        var h = $(window).height();
+        var scale = 0.75;
+        $(".matchupBoard").css('height', h * scale);
+
       });
 
     </script>
+
+
+    <!-- The matchup table -->
+
+    <div class="row">
+      <div class="col s12">
+
+        <center><div class="matchupBoard"> <!-- the board -->
+        &nbsp;
+        </div></center>
+
+      </div>
+    </div>
 
 
     <div id="accountProfile" class="menuItemContent">
@@ -165,6 +182,8 @@
               </div>
             </div>
           </li>
+
+
           <!--li>
             <div class="collapsible-header"><i class="material-icons">games</i>Record Game</div>
             <div class="collapsible-body">
