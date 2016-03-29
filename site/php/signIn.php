@@ -1,8 +1,9 @@
 <?php
 
-include 'conn.php';
-
-$db = new Db();
+if (!isset($db)){
+  include 'conn.php';
+  $db = new Db();
+}
 
 $hashedCode = $db -> quote(htmlspecialchars(hash("sha512", $_POST['securityCode'])));
 $dbString = "SecurityCode=". $hashedCode;

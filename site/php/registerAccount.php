@@ -25,7 +25,8 @@ if ( $firstName && $lastName && $securityCode ) {
 
   if($checkDupes[0]['dupeCount'] == 0){
     $result = $db -> query("INSERT INTO Persons (LastName, FirstName, SecurityCode, AboutMe) VALUES (" . $sqllastName . "," . $sqlfirstName . "," . $hashedCode . "," . $sqlaboutMe . ");");
-
+ 
+    include_once('signIn.php'); // Do a login
     echo "success";
   }else{
     echo "dupe";

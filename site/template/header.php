@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-$accountISSET = $_SESSION['authenticated']; 
+$accountISSET = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] == true; 
 
 ?>
 
