@@ -24,4 +24,7 @@ if (!empty($userInfo)) {
   $_SESSION["authenticated"] = true;
   $accountInfo = "'".json_encode($accountInfo)."'";
 }
+
+// Take the user back to account content
+header('Location: ../accountContent.php'); // ugly but it works
 ?>

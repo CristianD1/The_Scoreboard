@@ -1,8 +1,6 @@
 
 <?php 
     include 'template/header.php';
-    include 'php/signIn.php'; // get simple user info
-    $accountISSET = $loggedIn;
 ?>  
 <!-- Show personal info (including joined groups) option to record a game -->
 
@@ -59,7 +57,7 @@
           <div class="collapsible-body">
             <div class="row">
 
-              <form id="loginForm" class="col s12" action='accountContent.php' method="post"> <!-- sign in -->
+              <form id="loginForm" class="col s12" action='php/signIn.php' method="post"> <!-- sign in -->
                 <div class="row">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">lock</i>
