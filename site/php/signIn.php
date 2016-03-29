@@ -1,13 +1,13 @@
 <?php
 
-// include 'conn.php';
+include 'conn.php';
 
-// $db = new Db();
+$db = new Db();
 
 $hashedCode = $db -> quote(htmlspecialchars(hash("sha512", $_POST['securityCode'])));
 $dbString = "SecurityCode=". $hashedCode;
 
-// $userInfo = $db -> select("SELECT PersonID, LastName, FirstName, AboutMe FROM Persons WHERE " . $dbString . ";");
+$userInfo = $db -> select("SELECT PersonID, LastName, FirstName, AboutMe FROM Persons WHERE " . $dbString . ";");
 
 $loggedIn = false;
 if (!empty($userInfo)) {
