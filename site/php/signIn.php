@@ -19,7 +19,8 @@ if (!empty($userInfo)) {
   );
   $loggedIn = true;
   session_start();
-  setcookie("ilikecookies","true");
+  $_SESSION["personID"] = $userInfo[0]['PersonID'];
+  $_SESSION["authenticated"] = true;
   $accountInfo = "'".json_encode($accountInfo)."'";
 }
 ?>

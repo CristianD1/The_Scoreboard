@@ -1,11 +1,7 @@
 
 <?php
 
-$accountISSET = false; /* TODO Check if session is set (logged in) */
-
-//if ( $accountISSET == false && true/* TODO Page is not account page */ ){
-    // TODO: redirect user back to index.php LOL GET REKT NUB NICE TRY
-//}
+$accountISSET = $_SESSION['authenticated']; 
 
 ?>
 
