@@ -125,20 +125,6 @@
 
     </script>
 
-
-    <!-- The matchup table -->
-
-    <div class="row">
-      <div class="col s12">
-
-        <center><div class="matchupBoard"> <!-- the board -->
-        &nbsp;
-        </div></center>
-
-      </div>
-    </div>
-
-
     <div id="accountProfile" class="menuItemContent">
       <div class="row">
         <center><h3 id="profile_accountName">My Account</h3></center>
@@ -236,6 +222,20 @@
             </div>
           </li-->
         </ul>
+      </div>
+    </div>
+
+    <!-- The matchup table -->
+
+    <div class="row">
+      <div class="col s12">
+
+        <center>
+          <div class="matchupBoard"> <!-- the board -->
+            <div class="waves-effect waves-light btn-large">Submit</div>
+          </div>
+        </center>
+
       </div>
     </div>
 

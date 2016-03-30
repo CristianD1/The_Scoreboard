@@ -8,7 +8,12 @@ html {
 }
 
 .matchupBoard{
-  border: 5px solid blue;
+  border: 2px solid pink;
   border-radius: 50px;
   width: 75%;
+  
+  background-image: url("http://digital.hammacher.com/Items/11533/11533_1000x1000.jpg");
+  background-size: 100% 100%;
+  padding-top: 66.64%;
+  overflow: hidden;
 }
