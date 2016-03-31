@@ -233,7 +233,11 @@
         <center>
           <div class="matchupBoard"> <!-- the board -->
             <div class="waves-effect waves-light btn-large">Submit</div>
-          </div>
+             <img src="http://i.imgur.com/h7bPidr.png"/>
+             <img src="http://i.imgur.com/h7bPidr.png"/>
+             <img src="http://i.imgur.com/h7bPidr.png"/>
+             <img src="http://i.imgur.com/h7bPidr.png"/>
+         </div>
         </center>
 
       </div>
