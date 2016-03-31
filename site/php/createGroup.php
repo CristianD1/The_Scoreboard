@@ -1,12 +1,14 @@
 <?php
 
+session_start();
+
 include 'conn.php';
 
 $db = new Db();
 
 $teamName = $_POST['teamName'];
 $personID2 = intval($_POST['teammateID']);
-$personID1 = intval($_SESSION['userID']);
+$personID1 = intval($_SESSION['personID']);
 
 $retVal = Array();
 
@@ -30,6 +32,6 @@ if( $teamName != null && $teamName != "" && $personID2 > 0 && $personID1 != $per
 
 $retVal = json_encode($retVal);
 
-echo $retVal
+echo $retVal;
 
 ?>

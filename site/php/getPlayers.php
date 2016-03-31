@@ -6,9 +6,9 @@ $db = new Db();
 
 
 // PINNED FOR SESSIONS
-$userID = intval($_SESSION['userID']);; // Will be taken from session
+$userID = intval($_SESSION['personID']);; // Will be taken from session
 
-$playerList = $db->select("SELECT FirstName, LastName, AboutMe, PersonID FROM Persons WHERE PersonID !=".$userID.";"); // This needs to exclude user. will do so with sessions
+$playerList = $db->select("SELECT FirstName, LastName, AboutMe, PersonID FROM Persons WHERE PersonID !=".$userID.";");
 
 $retVal = Array();
 
