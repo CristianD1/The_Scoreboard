@@ -16,7 +16,7 @@ if ( $firstName && $lastName && $securityCode ) {
   $sqllastName = htmlspecialchars($db -> quote($lastName));
   $sqlaboutMe = htmlspecialchars($db -> quote($aboutMe));
   $sqlsecurityCode = htmlspecialchars($securityCode);
-  $hashedCode = $db -> quote(htmlspecialchars(hash("sha512", $sqlsecurityCode)));
+  $hashedCode = hash("sha512", $sqlsecurityCode);
 
   echo "Starting sql";
 
