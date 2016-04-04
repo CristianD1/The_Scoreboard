@@ -17,7 +17,7 @@ $playerInfoRetval = Array(
 
 // Get games played info
 $gamesPlayedRetVal = Array();
-$gamesPlayed = $db->select("SELECT * FROM GamesPlayed WHERE Player1ID==".$userID." OR Player2ID==".$userID." OR Player3ID==".$userID." OR Player4ID==".$userID.";");
+$gamesPlayed = $db->select("SELECT * FROM GamesPlayed WHERE Player1ID==".$userID." OR Player2ID==".$userID." OR Player3ID==".$userID." OR Player4ID==".$userID." ORDER BY GameID DESC LIMIT 25;");
 if($gamesPlayed != false){
   foreach($gamesPlayed as $game){
     if($game['Player1ID'] != null){ $p1 = $db->select("SELECT FirstName, LastName FROM Persons WHERE PersonID = ".$game['Player1ID'].";"); }
@@ -43,7 +43,7 @@ if($gamesPlayed != false){
 //var_dump($gamesPlayedRetVal);
 
 // Get foosball info
-$foosball = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank FROM FoosballSingles WHERE PersonID = ".$userID." ORDER BY elo ASC;");
+$foosball = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank FROM FoosballSingles WHERE PersonID = ".$userID." ORDER BY elo ASC LIMIT 25;");
 if($foosball != false){
   $foosballRetVal = Array(
       'wins'  => $foosball[0]['wins'],
@@ -58,7 +58,7 @@ if($foosball != false){
 //var_dump($foosballRetVal);
 
 // Get pingpong info
-$pingpong = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank  FROM PingPongSingles WHERE PersonID = ".$userID." ORDER BY elo ASC;");
+$pingpong = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank  FROM PingPongSingles WHERE PersonID = ".$userID." ORDER BY elo ASC LIMIT 25;");
 if($pingpong != false){
   $pingpongRetVal = Array(
       'wins'  => $pingpong[0]['wins'],
