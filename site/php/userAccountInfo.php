@@ -13,7 +13,7 @@ $playerInfoRetval = Array(
     'lastName'  => $playerInfo[0]['LastName'],
     'aboutMe'   => $playerInfo[0]['AboutMe']
   );
-var_dump($playerInfoRetval);
+//var_dump($playerInfoRetval);
 
 // Get games played info
 $gamesPlayedRetVal = Array();
@@ -40,36 +40,43 @@ if($gamesPlayed != false){
       'error' => 'No games have been played.'
     );
 }
-var_dump($gamesPlayedRetVal);
+//var_dump($gamesPlayedRetVal);
 
 // Get foosball info
-$foosball = $db->select("SELECT wins, elo FROM FoosballSingles WHERE PersonID = ".$userID.";");
+$foosball = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank FROM FoosballSingles WHERE PersonID = ".$userID." ORDER BY elo ASC;");
 if($foosball != false){
   $foosballRetVal = Array(
       'wins'  => $foosball[0]['wins'],
-      'elo'   => $foosball[0]['elo']
+      'elo'   => $foosball[0]['elo'],
+      'rank'  => $foosball[0]['rank']
     );
 }else{
   $foosballRetVal = Array(
       'error' => 'No Foosball scores found.'
     );
 }
-var_dump($foosballRetVal);
+//var_dump($foosballRetVal);
 
 // Get pingpong info
-$pingpong = $db->select("SELECT wins, elo FROM PingPongSingles WHERE PersonID = ".$userID.";");
+$pingpong = $db->select("SELECT wins, elo, @rownum:=@rownum + 1 AS rank  FROM PingPongSingles WHERE PersonID = ".$userID." ORDER BY elo ASC;");
 if($pingpong != false){
   $pingpongRetVal = Array(
       'wins'  => $pingpong[0]['wins'],
-      'elo'   => $pingpong[0]['elo']
+      'elo'   => $pingpong[0]['elo'],
+      'rank'  => $pingpong[0]['rank']
     );
 }else{
   $pingpongRetVal = Array(
       'error' => 'No Ping Pong scores found.'
     );
 }
-var_dump($pingpongRetVal);
+//var_dump($pingpongRetVal);
 
+
+$playerInfoRetval = "'".json_encode($playerInfoRetval)."'";
+$gamesPlayedRetVal = "'".json_encode($gamesPlayedRetVal)."'";
+$foosballRetVal = "'".json_encode($foosballRetVal)."'";
+$pingpongRetVal = "'".json_encode($pingpongRetVal)."'";
 
 // Returns:
 //  $playerInfoRetval
