@@ -6,7 +6,7 @@ include 'conn.php';
 
 $db = new Db();
 
-$teamName = $_POST['teamName'];
+$teamName = $db ->quote( htmlspecialchars($_POST['teamName']));
 $personID2 = intval($_POST['teammateID']);
 $personID1 = intval($_SESSION['personID']);
 
@@ -18,7 +18,7 @@ if( $teamName != null && $teamName != "" && $personID2 > 0 && $personID1 != $per
   $playerList = $db->select("SELECT Count(TeamID) AS resCount, TeamName FROM Teams WHERE (PersonID1=".$personID1." AND PersonID2=".$personID2.") OR (PersonID2=".$personID1." AND PersonID1=".$personID2.");");
 
   if($playerList[0]['resCount'] == 0){
-    $result = $db -> query("INSERT INTO Teams (TeamName, PersonID1, PersonID2) VALUES (".$db->quote($teamName).", ".$personID1.", ".$personID2.");");
+    $result = $db -> query("INSERT INTO Teams (TeamName, PersonID1, PersonID2) VALUES (".$teamName.", ".$personID1.", ".$personID2.");");
 
     $retVal = Array('success' => 'Team was created.');
   }else{

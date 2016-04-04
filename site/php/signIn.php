@@ -5,7 +5,7 @@ if (!isset($db)){
   $db = new Db();
 }
 
-$hashedCode = $db -> quote(htmlspecialchars(hash("sha512", $_POST['securityCode'])));
+$hashedCode = hash("sha512", $_POST['securityCode']);
 $dbString = "SecurityCode=". $hashedCode;
 
 $userInfo = $db -> select("SELECT PersonID, LastName, FirstName, AboutMe FROM Persons WHERE " . $dbString . ";");
