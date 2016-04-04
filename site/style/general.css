@@ -8,14 +8,42 @@ html {
 }
 
 .matchupBoard{
+  position: relative;
   border: 2px solid pink;
-  border-radius: 50px;
   width: 75%;
+  height: 500px;
   
-  background-image: url("http://digital.hammacher.com/Items/11533/11533_1000x1000.jpg");
-  background-size: contain;
-  padding-bottom: 66.64%;
+  background-image: url("gameBoard.jpg");
+  background-size: cover;
   overflow: hidden;
   background-repeat: no-repeat;
   display:inline-block;
+
+
+  padding-top:20px;
+}
+
+.col{
+  padding:0px !important;
+}
+
+.player{
+  float: left !important;
+}
+.player:hover{
+  background: white;
+}
+.teamBtn:hover{
+  background: white;
+}
+
+.separator{
+  padding:50px;
+}
+
+.submitBtn{
+  color: black;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }

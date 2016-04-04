@@ -35,6 +35,7 @@ $accountISSET = isset($_SESSION['authenticated']) && $_SESSION['authenticated'] 
     function rebindSelect(){
       $('select').material_select('destroy');
       $('select').material_select();
+      $('.collapsible').collapsible();
     }
 
     function clearListCookies(){   
