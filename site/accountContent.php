@@ -108,57 +108,32 @@
       include 'php/userAccountInfo.php'; // get rankings and groups
   ?>
 
-    <script>
-
-      var basicUserInfo = JSON.parse(<?php echo $accountInfo ?>);
-
-      $(function(){
-        // set up basic information
-        $('#profile_accountName').html(basicUserInfo.firstName + ', ' + basicUserInfo.lastName);
-        $('#profile_aboutMe').html(basicUserInfo.aboutMe);
-
-        var h = $(window).height();
-        var scale = 0.75;
-        $(".matchupBoard").css('height', h * scale);
-
-      });
-
-    </script>
-
     <div id="accountProfile" class="menuItemContent">
       <div class="row">
         <center><h3 id="profile_accountName">My Account</h3></center>
         <h4 id="profile_aboutMe">About Me</h4>
+
         <ul class="collapsible" data-collapsible="accordion">
           <li>
-            <div class="collapsible-header"><i class="material-icons">perm_identity</i>My Info</div>
+            <div class="collapsible-header"><i class="material-icons">perm_identity</i>Foosball Scores</div>
             <div class="collapsible-body">
-              <div id="account_groups">
+              <div>
 
                 <table>
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
-                        <th data-field="name">Item Name</th>
-                        <th data-field="price">Item Price</th>
+                        <th data-field="wins">Wins</th>
+                        <th data-field="elo">Elo</th>
+                        <th data-field="rank">Rank</th>
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="foosballScoresTable">
                     <tr>
                       <td>Alvin</td>
                       <td>Eclair</td>
                       <td>$0.87</td>
-                    </tr>
-                    <tr>
-                      <td>Alan</td>
-                      <td>Jellybean</td>
-                      <td>$3.76</td>
-                    </tr>
-                    <tr>
-                      <td>Jonathan</td>
-                      <td>Lollipop</td>
-                      <td>$7.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -166,62 +141,69 @@
               </div>
             </div>
           </li>
-
-
-          <!--li>
-            <div class="collapsible-header"><i class="material-icons">games</i>Record Game</div>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">perm_identity</i>Ping Pong Scores</div>
             <div class="collapsible-body">
-              <div class="row">
-                <div id="matchupYourTeam" class="input-field col s6">
-                  <select>
-                    <option value="" disabled selected>Choose Your Team</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                  <label>The matchup</label>
-                </div>
-                <div id="matchupOpponent" class="input-field col s6">
-                  <select>
-                    <option value="" disabled selected>Choose Opponent</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                  </select>
-                  <label>The matchup</label>
-                </div>
+              <div>
+
+                <table>
+                  <thead>
+                    <tr>
+                        <th data-field="id">Name</th>
+                        <th data-field="wins">Wins</th>
+                        <th data-field="elo">Elo</th>
+                        <th data-field="rank">Rank</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="pingpongScoresTable">
+                    <tr>
+                      <td>Alvin</td>
+                      <td>Eclair</td>
+                      <td>$0.87</td>
+                    </tr>
+                  </tbody>
+                </table>
+            
               </div>
-              <div class="row">
-                <div id="matchupYourScore" class="input-field col s6">
-                  <select>
-                    <script>
-                      var opts = "<select><option value='' disabled selected>Your Score</option>";
-                      for(var i = 0; i <= 10; i++){
-                        opts += "<option value='"+i+"'>"+i+"</option>";
-                      }
-                      $('#matchupYourScore').html(opts+"</select>");
-                      rebindSelect();
-                    </script>
-                  </select>
-                </div>
-                <div id="matchupOpponentScore" class="input-field col s6">
-                  <select>
-                    <script>
-                      var opts = "<select><option value='' disabled selected>Opponents Score</option>";
-                      for(var i = 0; i <= 10; i++){
-                        opts += "<option value='"+i+"'>"+i+"</option>";
-                      }
-                      $('#matchupOpponentScore').html(opts+"</select>");
-                      rebindSelect();
-                    </script>
-                  </select>
-                </div>
-              </div>
-              <marquee><h4 id='recordMatchError' style='color: red;'></h4></marquee>
-              <center><a onclick="recordMatch()" class="waves-effect waves-light btn">Submit</a></center>
             </div>
-          </li-->
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">perm_identity</i>Previous Games Played</div>
+            <div class="collapsible-body">
+              <div>
+
+                <table>
+                  <thead>
+                    <tr>
+                        <th data-field="gameType">Game Type</th>
+                        <th data-field="p1N">Player 1 Name</th>
+                        <th data-field="p2N">Player 2 Name</th>
+                        <th data-field="team1Score">Team 1 Score</th>
+                        <th data-field="p3N">Player 3 Name</th>
+                        <th data-field="p4N">Player 4 Name</th>
+                        <th data-field="team2Score">Team 2 Score</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="previousGamesTable">
+                    <tr>
+                      <td>Alvin</td>
+                      <td>Eclair</td>
+                      <td>$0.87</td>
+                      <td>Alvin</td>
+                      <td>Eclair</td>
+                      <td>$0.87</td>
+                      <td>Alvin</td>
+                    </tr>
+                  </tbody>
+                </table>
+            
+              </div>
+            </div>
+          </li>
         </ul>
+
       </div>
     </div>
 
@@ -242,6 +224,106 @@
 
       </div>
     </div>
+
+    <script>
+
+    // Returns:
+    //  $playerInfoRetval
+    //  $gamesPlayedRetVal
+    //  $foosballRetVal
+    //  $pingpongRetVal
+
+    var basicUserInfo = JSON.parse(<?php echo $playerInfoRetval ?>);
+    var pingpongInfo = JSON.parse(<?php echo $pingpongRetVal ?>);
+    var foosballInfo = JSON.parse(<?php echo $foosballRetVal ?>);
+    var gamesPlayedInfo = JSON.parse(<?php echo $gamesPlayedRetVal ?>);
+
+    // Global user info
+    var username = basicUserInfo.firstName + ' ' + basicUserInfo.lastName;
+
+    // SET BASIC USER INFO
+      $('#profile_accountName').html(username);
+      $('#profile_aboutMe').html(basicUserInfo.aboutMe);
+    // END BASIC USER INFO
+
+    // SET FOOSBALL SCORES INFO
+      var tableHtml = "";
+      if(typeof foosballInfo.error !== 'undefined'){
+        tableHtml += "<tr>";
+          tableHtml += "<td>"+username+"</td>";
+          tableHtml += "<td>"+foosballInfo.error+"</td>";
+          tableHtml += "<td></td>";
+        tableHtml += "</tr>";
+      } else {
+        for(var i = 0; i < foosballInfo.length; i++){
+          tableHtml += "<tr>";
+            tableHtml += "<td>"+username+"</td>";
+            tableHtml += "<td>"+foosballInfo.wins+"</td>";
+            tableHtml += "<td>"+foosballInfo.elo+"</td>";
+            tableHtml += "<td>"+foosballInfo.rank+"</td>";
+          tableHtml += "</tr>";
+        }
+      }
+      $('#foosballScoresTable').html(tableHtml);
+    // END FOOSBALL SCORES INFO
+
+    // SET PINGPONG SCORES INFO
+      var tableHtml = "";
+      if(typeof pingpongInfo.error !== 'undefined'){
+        tableHtml += "<tr>";
+          tableHtml += "<td>"+username+"</td>";
+          tableHtml += "<td>"+pingpongInfo.error+"</td>";
+          tableHtml += "<td></td>";
+        tableHtml += "</tr>";
+      } else {
+        for(var i = 0; i < pingpongInfo.length; i++){
+          tableHtml += "<tr>";
+            tableHtml += "<td>"+username+"</td>";
+            tableHtml += "<td>"+pingpongInfo.wins+"</td>";
+            tableHtml += "<td>"+pingpongInfo.elo+"</td>";
+            tableHtml += "<td>"+pingpongInfo.rank+"</td>";
+          tableHtml += "</tr>";
+        }
+      }
+      $('#pingpongScoresTable').html(tableHtml);
+    // END PINGPONG SCORES INFO
+
+    // SET GAMES PLAYED INFO
+      var tableHtml = "";
+      if(typeof gamesPlayedInfo.error !== 'undefined'){
+        tableHtml += "<tr>";
+          tableHtml += "<td></td>";
+          tableHtml += "<td>"+gamesPlayedInfo.error+"</td>";
+          tableHtml += "<td></td>";
+          tableHtml += "<td></td>";
+          tableHtml += "<td></td>";
+          tableHtml += "<td></td>";
+          tableHtml += "<td></td>";
+        tableHtml += "</tr>";
+      } else {
+        for(var i = 0; i < gamesPlayedInfo.length; i++){
+          tableHtml += "<tr>";
+            tableHtml += "<td>"+gamesPlayedInfo.gameType+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.p1Name+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.p2Name+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.team1Score+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.p3Name+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.p4Name+"</td>";
+            tableHtml += "<td>"+gamesPlayedInfo.team2Score+"</td>";
+          tableHtml += "</tr>";
+        }
+      }
+      $('#previousGamesTable').html(tableHtml);
+    // END GAMES PLAYED INFO
+
+
+      $(function(){
+        var h = $(window).height();
+        var scale = 0.75;
+        $(".matchupBoard").css('height', h * scale);
+      });
+
+    </script>
 
 
   <?php
