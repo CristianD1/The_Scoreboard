@@ -8,7 +8,6 @@
 
 <script>
 
-var retList = JSON.parse(<?php echo($retVal); ?>);
 
 </script>
 

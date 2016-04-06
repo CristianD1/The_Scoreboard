@@ -119,7 +119,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight" style="float:left !important;">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -146,7 +146,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight" style="float:left !important;">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -173,7 +173,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight" style="float:left !important;">
                   <thead>
                     <tr>
                         <th data-field="gameType">Game Type</th>
@@ -213,13 +213,47 @@
       <div class="col s12">
 
         <center>
+          <h5>Record Game</h5>
           <div class="matchupBoard"> <!-- the board -->
-            <div class="waves-effect waves-light btn-large">Submit</div>
-             <img src="http://i.imgur.com/h7bPidr.png"/>
-             <img src="http://i.imgur.com/h7bPidr.png"/>
-             <img src="http://i.imgur.com/h7bPidr.png"/>
-             <img src="http://i.imgur.com/h7bPidr.png"/>
-         </div>
+            <div class="row">
+              <div class="col s5">
+                <div id="team1btn" class="teamBtn btn-flat">Team 1</div>
+              </div>
+              <div class="col s7">
+                <div class="row">
+                  <div class="col s12">
+                    <div id="p1t1" class="player btn-flat">Player 1</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <div id="p2t1" class="player btn-flat">Player 2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="separator"></div>
+            <div class="row">
+              <div class="col s5">
+                <div id="team2btn" class="teamBtn btn-flat">Team 2</div>
+              </div>
+              <div class="col s7">
+                <div class="row">
+                  <div class="col s12">
+                    <div id="p1t2" class="player btn-flat">Player 1</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <div id="p2t2" class="player btn-flat">Player 2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="submitBtn waves-effect waves-light btn-large #efebe9 brown lighten-5">Submit</div>
+            </div> 
+          </div>
         </center>
 
       </div>
@@ -253,6 +287,7 @@
           tableHtml += "<td>"+username+"</td>";
           tableHtml += "<td>"+foosballInfo.error+"</td>";
           tableHtml += "<td></td>";
+          tableHtml += "<td></td>";
         tableHtml += "</tr>";
       } else {
         for(var i = 0; i < foosballInfo.length; i++){
@@ -273,6 +308,7 @@
         tableHtml += "<tr>";
           tableHtml += "<td>"+username+"</td>";
           tableHtml += "<td>"+pingpongInfo.error+"</td>";
+          tableHtml += "<td></td>";
           tableHtml += "<td></td>";
         tableHtml += "</tr>";
       } else {
@@ -317,11 +353,7 @@
     // END GAMES PLAYED INFO
 
 
-      $(function(){
-        var h = $(window).height();
-        var scale = 0.75;
-        $(".matchupBoard").css('height', h * scale);
-      });
+    $('.collapsible').collapsible();
 
     </script>
 
