@@ -119,7 +119,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table class="responsive-table highlight" style="float:left !important;">
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -146,7 +146,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table class="responsive-table highlight" style="float:left !important;">
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -173,7 +173,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table class="responsive-table highlight" style="float:left !important;">
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="gameType">Game Type</th>
@@ -217,7 +217,7 @@
           <div class="matchupBoard"> <!-- the board -->
             <div class="row">
               <div class="col s5">
-                <div class="row">
+                <div class="row"> <!-- TEAM 1 -->
                   <div class="col s12">
 
                     <div class="teamBtn" onclick="getTeams(1);">
@@ -262,7 +262,7 @@
               </div>
             </div>
             <div class="separator"></div>
-            <div class="row">
+            <div class="row"> <!-- TEAM 2 -->
               <div class="col s5">
                 <div class="row">
                   <div class="col s12">
@@ -308,6 +308,26 @@
                 </div>
               </div>
             </div>
+            <div class="separator"></div>
+            <div class="row"> <!-- Game Type -->
+              <div id="gameTypeStorage"></div>
+              <div class="col s6">
+
+                <div class="teamBtn" onclick="setGameType(1);">
+                  <i id="g1TypeIcon" class="material-icons">info</i>
+                  <div id="game1Btn">Foosball</div>
+                </div>
+
+              </div>
+              <div class="col s6">
+
+                <div class="teamBtn" onclick="setGameType(2);">
+                  <i id="g2TypeIcon" class="material-icons">info</i>
+                  <div id="game2Btn">Ping Pong</div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </center>
 
@@ -323,7 +343,7 @@
     </div>
 
     <div id="resultOverlay" style="display:none">
-      <div class="overlayCover"></div>
+      <div class="overlayCover" onclick="$('#resultOverlay').hide();"></div>
       <div id="searchResultBox" class="overlayResultBox">
 
       </div>
@@ -335,6 +355,7 @@
     var pingpongInfo = JSON.parse(<?php echo $pingpongRetVal ?>);
     var foosballInfo = JSON.parse(<?php echo $foosballRetVal ?>);
     var gamesPlayedInfo = JSON.parse(<?php echo $gamesPlayedRetVal ?>);
+
 
     // Global user info
     var username = basicUserInfo.firstName + ' ' + basicUserInfo.lastName;
@@ -354,14 +375,12 @@
           tableHtml += "<td></td>";
         tableHtml += "</tr>";
       } else {
-        for(var i = 0; i < foosballInfo.length; i++){
-          tableHtml += "<tr>";
-            tableHtml += "<td>"+username+"</td>";
-            tableHtml += "<td>"+foosballInfo.wins+"</td>";
-            tableHtml += "<td>"+foosballInfo.elo+"</td>";
-            tableHtml += "<td>"+foosballInfo.rank+"</td>";
-          tableHtml += "</tr>";
-        }
+        tableHtml += "<tr>";
+          tableHtml += "<td>"+username+"</td>";
+          tableHtml += "<td>"+foosballInfo.wins+"</td>";
+          tableHtml += "<td>"+foosballInfo.elo+"</td>";
+          tableHtml += "<td>"+foosballInfo.rank+"</td>";
+        tableHtml += "</tr>";
       }
       $('#foosballScoresTable').html(tableHtml);
     // END FOOSBALL SCORES INFO
@@ -376,14 +395,12 @@
           tableHtml += "<td></td>";
         tableHtml += "</tr>";
       } else {
-        for(var i = 0; i < pingpongInfo.length; i++){
-          tableHtml += "<tr>";
-            tableHtml += "<td>"+username+"</td>";
-            tableHtml += "<td>"+pingpongInfo.wins+"</td>";
-            tableHtml += "<td>"+pingpongInfo.elo+"</td>";
-            tableHtml += "<td>"+pingpongInfo.rank+"</td>";
-          tableHtml += "</tr>";
-        }
+        tableHtml += "<tr>";
+          tableHtml += "<td>"+username+"</td>";
+          tableHtml += "<td>"+pingpongInfo.wins+"</td>";
+          tableHtml += "<td>"+pingpongInfo.elo+"</td>";
+          tableHtml += "<td>"+pingpongInfo.rank+"</td>";
+        tableHtml += "</tr>";
       }
       $('#pingpongScoresTable').html(tableHtml);
     // END PINGPONG SCORES INFO
@@ -402,14 +419,15 @@
         tableHtml += "</tr>";
       } else {
         for(var i = 0; i < gamesPlayedInfo.length; i++){
+          var currGame = gamesPlayedInfo[i];
           tableHtml += "<tr>";
-            tableHtml += "<td>"+gamesPlayedInfo.gameType+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.p1Name+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.p2Name+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.team1Score+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.p3Name+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.p4Name+"</td>";
-            tableHtml += "<td>"+gamesPlayedInfo.team2Score+"</td>";
+            tableHtml += "<td>"+((currGame.gameType == 1)?'Foosball':'Ping Pong')+"</td>";
+            tableHtml += "<td>"+((currGame.p1Name != '')?currGame.p1Name:'__')+"</td>";
+            tableHtml += "<td>"+((currGame.p2Name != '')?currGame.p2Name:'__')+"</td>";
+            tableHtml += "<td>"+((currGame.team1Won == 1)?'Win':'Loss')+"</td>";
+            tableHtml += "<td>"+((currGame.p3Name != '')?currGame.p3Name:'__')+"</td>";
+            tableHtml += "<td>"+((currGame.p4Name != '')?currGame.p4Name:'__')+"</td>";
+            tableHtml += "<td>"+((currGame.team2Won == 1)?'Win':'Loss')+"</td>";
           tableHtml += "</tr>";
         }
       }
@@ -556,22 +574,34 @@
         $('#t1Winner').data('win', 0);
       }
     }
+    function setGameType(tID){
+      if(tID == 1){
+        $('#g1TypeIcon').html('done');
+        $('#g2TypeIcon').html('info');
+      }else if(tID == 2){
+        $('#g2TypeIcon').html('done');
+        $('#g1TypeIcon').html('info');
+      }
+      $('#gameTypeStorage').data('type', tID);
+    }
 
     function submitGame(){
       $.ajax({
         type: 'POST',
         url: 'php/submitGame.php',
         data: {
-          team1ID: $('#team1Btn').data('tID'),
-          team1Status: $('#t1Winner').data('win'),
-          p1ID: $('#p1t1').data('pID'),
-          p2ID: $('#p2t1').data('pID'),
-          team2ID: $('#team2Btn').data('tID'),
-          team2Status: $('#t2Winner').data('win'),
-          p3ID: $('#p1t2').data('pID'),
-          p4ID: $('#p2t2').data('pID')
+          gameType: $('#gameTypeStorage').data('type') || '',
+          team1ID: $('#team1Btn').data('tID') || '',
+          team1Status: $('#t1Winner').data('win') || 0,
+          p1ID: $('#p1t1').data('pID') || '',
+          p2ID: $('#p2t1').data('pID') || '',
+          team2ID: $('#team2Btn').data('tID') || '',
+          team2Status: $('#t2Winner').data('win') || 0,
+          p3ID: $('#p1t2').data('pID') || '',
+          p4ID: $('#p2t2').data('pID') || ''
         },
         success: function(res){
+          console.log(res)
           var data = JSON.parse(res);
           if(data.error){
             Materialize.toast(data.error, 2000, 'rounded #ff5722 deep-orange');

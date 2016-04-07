@@ -7,14 +7,17 @@ html {
   font-family: LDFComicSans;
 }
 
+.responsive-table{
+  float:left !important;
+}
+
 .matchupBoard{
   position: relative;
   border: 2px solid pink;
   width: 75%;
   height: 500px;
   
-  background-image: url("gameBoard.jpg");
-  background-size: cover;
+  background-color: #F87217;
   overflow: hidden;
   background-repeat: no-repeat;
   display:inline-block;
@@ -81,4 +84,9 @@ html {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
   margin: 0px;
+}
+.card:hover{
+  width: 100% !important;
+  cursor: pointer !important;
+  cursor: hand !important;
 }

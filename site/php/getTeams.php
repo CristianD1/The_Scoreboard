@@ -17,7 +17,7 @@ foreach($teamList as $team){
       'teamName'      => $team['TeamName'],
       'p1ID'          => $team['PersonID1'],
       'p1Name'        => $p1N[0]['FirstName'] . ' ' . $p1N[0]['LastName'],
-      'P2ID'          => $team['PersonID2'],
+      'p2ID'          => $team['PersonID2'],
       'p2Name'        => $p2N[0]['FirstName'] . ' ' . $p2N[0]['LastName']
     );
   array_push($teamRetVal, $retValJSON);

@@ -28,7 +28,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -55,7 +55,7 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="id">Name</th>
@@ -82,16 +82,16 @@
             <div class="collapsible-body">
               <div>
 
-                <table>
+                <table class="responsive-table highlight striped">
                   <thead>
                     <tr>
                         <th data-field="gameType">Game Type</th>
                         <th data-field="p1N">Player 1 Name</th>
                         <th data-field="p2N">Player 2 Name</th>
-                        <th data-field="team1Score">Team 1 Score</th>
+                        <th data-field="team1Status">Team 1 Status</th>
                         <th data-field="p3N">Player 3 Name</th>
                         <th data-field="p4N">Player 4 Name</th>
-                        <th data-field="team2Score">Team 2 Score</th>
+                        <th data-field="team2Status">Team 2 Status</th>
                     </tr>
                   </thead>
 
@@ -130,6 +130,7 @@
   var foosballInfo = JSON.parse(<?php echo $foosballRetVal ?>);
   var gamesPlayedInfo = JSON.parse(<?php echo $gamesPlayedRetVal ?>);
 
+
   // SET FOOSBALL SCORES INFO
     var tableHtml = "";
     if(typeof foosballInfo.error !== 'undefined'){
@@ -140,11 +141,12 @@
       tableHtml += "</tr>";
     } else {
       for(var i = 0; i < foosballInfo.length; i++){
+        var currGame = foosballInfo[i];
         tableHtml += "<tr>";
-          tableHtml += "<td>"+foosballInfo.name+"</td>";
-          tableHtml += "<td>"+foosballInfo.wins+"</td>";
-          tableHtml += "<td>"+foosballInfo.elo+"</td>";
-          tableHtml += "<td>"+foosballInfo.rank+"</td>";
+          tableHtml += "<td>"+currGame.name+"</td>";
+          tableHtml += "<td>"+currGame.wins+"</td>";
+          tableHtml += "<td>"+currGame.elo+"</td>";
+          tableHtml += "<td>"+currGame.rank+"</td>";
         tableHtml += "</tr>";
       }
     }
@@ -161,11 +163,12 @@
       tableHtml += "</tr>";
     } else {
       for(var i = 0; i < pingpongInfo.length; i++){
+        var currGame = pingpongInfo[i];
         tableHtml += "<tr>";
-          tableHtml += "<td>"+foosballInfo.name+"</td>";
-          tableHtml += "<td>"+pingpongInfo.wins+"</td>";
-          tableHtml += "<td>"+pingpongInfo.elo+"</td>";
-          tableHtml += "<td>"+pingpongInfo.rank+"</td>";
+          tableHtml += "<td>"+currGame.name+"</td>";
+          tableHtml += "<td>"+currGame.wins+"</td>";
+          tableHtml += "<td>"+currGame.elo+"</td>";
+          tableHtml += "<td>"+currGame.rank+"</td>";
         tableHtml += "</tr>";
       }
     }
@@ -186,14 +189,15 @@
       tableHtml += "</tr>";
     } else {
       for(var i = 0; i < gamesPlayedInfo.length; i++){
+        var currGame = gamesPlayedInfo[i];
         tableHtml += "<tr>";
-          tableHtml += "<td>"+gamesPlayedInfo.gameType+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.p1Name+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.p2Name+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.team1Score+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.p3Name+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.p4Name+"</td>";
-          tableHtml += "<td>"+gamesPlayedInfo.team2Score+"</td>";
+          tableHtml += "<td>"+((currGame.gameType == 1)?'Foosball':'Ping Pong')+"</td>";
+          tableHtml += "<td>"+((currGame.p1Name != '')?currGame.p1Name:'__')+"</td>";
+          tableHtml += "<td>"+((currGame.p2Name != '')?currGame.p2Name:'__')+"</td>";
+          tableHtml += "<td>"+((currGame.team1Won == 1)?'Win':'Loss')+"</td>";
+          tableHtml += "<td>"+((currGame.p3Name != '')?currGame.p3Name:'__')+"</td>";
+          tableHtml += "<td>"+((currGame.p4Name != '')?currGame.p4Name:'__')+"</td>";
+          tableHtml += "<td>"+((currGame.team2Won == 1)?'Win':'Loss')+"</td>";
         tableHtml += "</tr>";
       }
     }
