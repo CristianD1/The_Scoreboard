@@ -14,9 +14,9 @@ $defaultElo = 1000;
 if ( $firstName && $lastName && $securityCode ) {
   echo $firstName . " " . $lastName . " " . $securityCode;
 
-  $sqlfirstName = mysql_escape_string (htmlspecialchars($db -> quote($firstName)));
-  $sqllastName = mysql_escape_string (htmlspecialchars($db -> quote($lastName)));
-  $sqlaboutMe = mysql_escape_string (htmlspecialchars($db -> quote($aboutMe)));
+  $sqlfirstName = htmlspecialchars($db -> quote($firstName), ENT_QUOTES);
+  $sqllastName = htmlspecialchars($db -> quote($lastName), ENT_QUOTES);
+  $sqlaboutMe = htmlspecialchars($db -> quote($aboutMe), ENT_QUOTES);
   $sqlsecurityCode = $securityCode;
   $hashedCode = $db -> quote( hash("sha512", $sqlsecurityCode));
 
