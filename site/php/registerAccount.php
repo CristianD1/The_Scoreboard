@@ -14,9 +14,9 @@ $defaultElo = 1000;
 if ( $firstName && $lastName && $securityCode ) {
   echo $firstName . " " . $lastName . " " . $securityCode;
 
-  $sqlfirstName = htmlspecialchars($db -> quote($firstName), ENT_QUOTES);
-  $sqllastName = htmlspecialchars($db -> quote($lastName), ENT_QUOTES);
-  $sqlaboutMe = htmlspecialchars($db -> quote($aboutMe), ENT_QUOTES);
+  $sqlfirstName = $db -> quote($firstName);
+  $sqllastName = $db -> quote($lastName);
+  $sqlaboutMe = $db -> quote($aboutMe);
   $sqlsecurityCode = $securityCode;
   $hashedCode = $db -> quote( hash("sha512", $sqlsecurityCode));
 

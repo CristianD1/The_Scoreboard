@@ -77,7 +77,7 @@ class Db {
      */
     public function quote($value) {
         $connection = $this -> connect();
-        return "'" . $connection -> real_escape_string($value) . "'";
+        return "'" . htmlspecialchars($connection -> real_escape_string($value), ENT_QUOTES) . "'";
     }
 }
 
