@@ -217,17 +217,46 @@
           <div class="matchupBoard"> <!-- the board -->
             <div class="row">
               <div class="col s5">
-                <div id="team1btn" class="teamBtn btn-flat">Team 1</div>
-              </div>
-              <div class="col s7">
                 <div class="row">
                   <div class="col s12">
-                    <div id="p1t1" class="player btn-flat">Player 1</div>
+
+                    <div class="teamBtn" onclick="getTeams(1);">
+                      <i class="material-icons">search</i>
+                      <div id="team1Btn">Team 1</div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s12">
-                    <div id="p2t1" class="player btn-flat">Player 2</div>
+
+                    <div class="teamBtn" onclick="setWinner(1);">
+                      <i id="t1WIcon" class="material-icons">info</i>
+                      <div id="t1Winner">Winner?</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col s7">
+                <div class="row">
+                  <div class="col s12">
+
+                    <div class="player" onclick="getPlayers(11)">
+                      <i class="material-icons">search</i>
+                      <div id="p1t1" data-pID="">Player 1</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+
+                    <div class="player" onclick="getPlayers(21)">
+                      <i class="material-icons">search</i>
+                      <div id="p2t1" data-pID=""> Player 2</div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -235,37 +264,72 @@
             <div class="separator"></div>
             <div class="row">
               <div class="col s5">
-                <div id="team2btn" class="teamBtn btn-flat">Team 2</div>
+                <div class="row">
+                  <div class="col s12">
+
+                    <div class="teamBtn" onclick="getTeams(2);">
+                      <i class="material-icons">search</i>
+                      <div id="team2Btn">Team 2</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+
+                    <div class="teamBtn" onclick="setWinner(2);">
+                      <i id="t2WIcon" class="material-icons">info</i>
+                      <div id="t2Winner">Winner?</div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
               <div class="col s7">
                 <div class="row">
                   <div class="col s12">
-                    <div id="p1t2" class="player btn-flat">Player 1</div>
+
+                    <div class="player" onclick="getPlayers(12)">
+                      <i class="material-icons">search</i>
+                      <div id="p1t2" data-pID="">Player 1</div>
+                    </div>
+
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s12">
-                    <div id="p2t2" class="player btn-flat">Player 2</div>
+                    
+                    <div class="player" onclick="getPlayers(22)">
+                      <i class="material-icons">search</i>
+                      <div id="p2t2" data-pID="">Player 2</div>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="submitBtn waves-effect waves-light btn-large #efebe9 brown lighten-5">Submit</div>
-            </div> 
           </div>
         </center>
 
       </div>
     </div>
 
-    <script>
+    <div class="row">
+      <div class="col s12">
+        <center>
+          <div class="submitBtn waves-effect waves-light btn-large orange" onclick="submitGame()">Submit Game</div>
+        </center>
+      </div>
+    </div>
 
-    // Returns:
-    //  $playerInfoRetval
-    //  $gamesPlayedRetVal
-    //  $foosballRetVal
-    //  $pingpongRetVal
+    <div id="resultOverlay" style="display:none">
+      <div class="overlayCover"></div>
+      <div id="searchResultBox" class="overlayResultBox">
+
+      </div>
+    </div>
+
+    <script>
 
     var basicUserInfo = JSON.parse(<?php echo $playerInfoRetval ?>);
     var pingpongInfo = JSON.parse(<?php echo $pingpongRetVal ?>);
@@ -354,6 +418,169 @@
 
 
     $('.collapsible').collapsible();
+
+
+    // get the full list of selected teams
+    var selectedTeams = [];
+    var selectedPlayers = [];
+
+    // Define click events
+    function getTeams(selectedBtn){
+      $.ajax({
+        type: 'POST',
+        url: 'php/getTeams.php',
+        data: {
+
+        },
+        success: function(res){
+          var teamList = JSON.parse(res);
+          console.log(teamList);
+          
+          var retContent = '';
+
+          for(var teamNum in teamList){
+            var team = teamList[teamNum];
+            selectedTeams.push(team);
+
+            retContent += '<div class="row" onclick="selectTeam('+teamNum+', '+selectedBtn+')">';
+            retContent += ' <div class="col s12 m6 nopadd">';
+            retContent += '   <div class="card blue-grey darken-1 nopadd">';
+            retContent += '     <div class="card-content white-text nopadd">';
+            retContent += '       <span class="card-title nopadd">'+team.teamName+'</span>';
+            retContent += '     </div>';
+            retContent += '     <div class="card-action nopadd">';
+            retContent += '       <a>'+team.p1Name+'</a></br>';
+            retContent += '       <a>'+team.p2Name+'</a>';
+            retContent += '     </div>';
+            retContent += '   </div>';
+            retContent += ' </div>';
+            retContent += '</div>';
+
+          }
+          $('#searchResultBox').html(retContent);
+          $('#resultOverlay').show();
+        }
+      });
+    }
+    function getPlayers(selectedPlayer){
+      $.ajax({
+        type: 'POST',
+        url: 'php/getAllPlayers.php',
+        data: {
+
+        },
+        success: function(res){
+          var playerList = JSON.parse(res);
+          console.log(playerList);
+          
+          var retContent = '';
+
+          for(var playerNum in playerList){
+            var player = playerList[playerNum];
+            selectedPlayers.push(player);
+
+            retContent += '<div class="row" onclick="selectPlayer('+playerNum+', '+selectedPlayer+')">';
+            retContent += ' <div class="col s12 m6 nopadd">';
+            retContent += '   <div class="card blue-grey darken-1 nopadd">';
+            retContent += '     <div class="card-content white-text nopadd">';
+            retContent += '       <span class="card-title nopadd">'+player.playerName+'</span>';
+            retContent += '     </div>';
+            retContent += '     <div class="card-action nopadd">';
+            retContent += '       <a>'+player.playerAbout+'</a>';
+            retContent += '     </div>';
+            retContent += '   </div>';
+            retContent += ' </div>';
+            retContent += '</div>';
+
+          }
+          $('#searchResultBox').html(retContent);
+          $('#resultOverlay').show();
+        }
+      });
+    }
+    // End click events define
+    function selectPlayer(playerNum, playerBtn){
+      var player = selectedPlayers[playerNum];
+
+      $('#resultOverlay').hide();
+
+      var p = '';
+      switch(playerBtn){
+        case 11: p = '#p1t1'; break;
+        case 21: p = '#p2t1'; break;
+        case 12: p = '#p1t2'; break;
+        case 22: p = '#p2t2'; break;
+      }
+      
+      $(p).html(player.playerName);
+      $(p).data('pID', player.playerID);
+    }
+    function selectTeam(teamNum, teamBtn){
+      var team = selectedTeams[teamNum];
+
+      $('#resultOverlay').hide();
+
+      var t1 = '';
+      var p1 = '';
+      var p2 = '';
+      if(teamBtn == 1){
+        t1 = '#team1Btn';
+        p1 = '#p1t1';
+        p2 = '#p2t1';
+      }else if(teamBtn == 2){
+        t1 = '#team2Btn';
+        p1 = '#p1t2';
+        p2 = '#p2t2';
+      }else{
+        Materialize.toast("Something weird happened?", 2000, 'rounded #ff5722 deep-orange');
+      }
+
+      $(t1).html(team.teamName);
+      $(t1).data('tID', team.teamID);
+      $(p1).html(team.p1Name);
+      $(p1).data('pID', team.p1ID);
+      $(p2).html(team.p2Name);
+      $(p2).data('pID', team.p2ID);
+    }
+
+    function setWinner(tID){
+      if(tID == 1){
+        $('#t1WIcon').html('done');
+        $('#t1Winner').data('win', 1);
+        $('#t2WIcon').html('info');
+        $('#t2Winner').data('win', 0);
+      }else if(tID == 2){
+        $('#t2WIcon').html('done');
+        $('#t2Winner').data('win', 1);
+        $('#t1WIcon').html('info');
+        $('#t1Winner').data('win', 0);
+      }
+    }
+
+    function submitGame(){
+      $.ajax({
+        type: 'POST',
+        url: 'php/submitGame.php',
+        data: {
+          team1ID: $('#team1Btn').data('tID'),
+          team1Status: $('#t1Winner').data('win'),
+          p1ID: $('#p1t1').data('pID'),
+          p2ID: $('#p2t1').data('pID'),
+          team2ID: $('#team2Btn').data('tID'),
+          team2Status: $('#t2Winner').data('win'),
+          p3ID: $('#p1t2').data('pID'),
+          p4ID: $('#p2t2').data('pID')
+        },
+        success: function(res){
+          var data = JSON.parse(res);
+          if(data.error){
+            Materialize.toast(data.error, 2000, 'rounded #ff5722 deep-orange');
+          }else if(data.success){
+            Materialize.toast(data.success, 2000, 'rounded #64dd17 light-green');
+          }
+        }
+      })
+    }
 
     </script>
 

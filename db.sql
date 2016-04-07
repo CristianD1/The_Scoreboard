@@ -45,11 +45,13 @@ CREATE TABLE GamesPlayed
 (
   GameID int NOT NULL AUTO_INCREMENT,
   GameType varchar(20),
+  Team1ID int,
   Player1ID int,
   Player2ID int,
-  Team1Score int,
+  Team1Won boolean,
+  Team2ID int,
   Player3ID int,
   Player4ID int,
-  Team2Score int,
+  Team2Won boolean,
   PRIMARY KEY (GameID)
 );

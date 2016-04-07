@@ -19,8 +19,8 @@ html {
   background-repeat: no-repeat;
   display:inline-block;
 
-
-  padding-top:20px;
+  padding-top:50px;
+  overflow: scroll;
 }
 
 .col{
@@ -29,21 +29,56 @@ html {
 
 .player{
   float: left !important;
+  width: 100%;
 }
 .player:hover{
   background: white;
+  cursor: pointer;
+  cursor: hand;
 }
 .teamBtn:hover{
   background: white;
+  cursor: pointer;
+  cursor: hand;
 }
 
 .separator{
-  padding:50px;
+  padding-top: 5px;
+  width: 70%;
+  border-top: 5px solid black;
+  height: 0px;
 }
 
 .submitBtn{
   color: black;
-  position: absolute;
-  bottom: 0px;
+}
+
+.overlayCover{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0px;
   left: 0px;
+  z-index: 999;
+
+  background: black;
+  opacity: 0.8;
+ }
+.overlayResultBox{
+  height: 70%;
+  width: 70%;
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  z-index: 1000;
+  overflow: scroll;
+
+  background: gray;
+  opacity: 1;
+}
+
+.nopadd{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin: 0px;
 }
