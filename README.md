@@ -32,6 +32,6 @@
 
 ### Screenshots!
 ![](scoreboardPics/landingPage.png?raw=true)
-![](scoreboardPics/signup.png.png?raw=true)
-![](scoreboardPics/account.png.png?raw=true)
-![](scoreboardPics/recordGame.png.png?raw=true)
+![](scoreboardPics/signup.png?raw=true)
+![](scoreboardPics/account.png?raw=true)
+![](scoreboardPics/recordGame.png?raw=true)
