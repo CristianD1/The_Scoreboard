@@ -31,7 +31,7 @@
 
 
 ### Screenshots!
-(LandingPage)[scoreboardPics/landingPage.png]
-(signup.png)[scoreboardPics/signup.png.png]
-(account.png)[scoreboardPics/account.png.png]
-(recordGame.png)[scoreboardPics/recordGame.png.png]
+[[scoreboardPics/landingPage.png]]
+[[scoreboardPics/signup.png.png]]
+[[scoreboardPics/account.png.png]]
+[[scoreboardPics/recordGame.png.png]]
